@@ -39,7 +39,10 @@ namespace TowerOfHanoi
 		public void Print()
 		{
 			foreach (var e in Rings)
-				Console.WriteLine(e);
+			{
+				Console.Write("{0} ", e);
+			}
+			Console.Write('\n');
 		}
 	}
 }

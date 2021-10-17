@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace TowerOfHanoi
 {
@@ -7,8 +8,19 @@ namespace TowerOfHanoi
 	{
 		static void Main(string[] args)
 		{
-			//RunRecursive();
-			RunIterative();
+			RunRecursive();
+			//RunIterative();
+			//RunStack();
+		}
+
+		static void ShowPegs(Peg from, Peg to, Peg buf_peg)
+		{
+			Console.WriteLine("Peg1:");
+			from.Print();
+			Console.WriteLine("Peg2:");
+			buf_peg.Print();
+			Console.WriteLine("Peg3:");
+			to.Print();
 		}
 
 		static void RunRecursive()
@@ -19,9 +31,12 @@ namespace TowerOfHanoi
 			var additionalPeg = new Peg(N);
 			var finalPeg = new Peg(N);
 
+			ShowPegs(originalPeg, finalPeg, additionalPeg);
+
 			RecutsiveHanoiTower(N, originalPeg, finalPeg, additionalPeg);
 
-			finalPeg.Print();
+			Console.WriteLine("\nAfter:");
+			ShowPegs(originalPeg, finalPeg, additionalPeg);
 		}
 
 		static void RecutsiveHanoiTower(int quantity, Peg from, Peg to, Peg buf_peg)
@@ -30,7 +45,7 @@ namespace TowerOfHanoi
 			{
 				RecutsiveHanoiTower(quantity - 1, from, buf_peg, to);
 
-				to.Add(from.Remove());
+				Relocate(from, to);
 
 				RecutsiveHanoiTower(quantity - 1, buf_peg, to, from);
 			}
@@ -44,10 +59,12 @@ namespace TowerOfHanoi
 			var additionalPeg = new Peg(N);
 			var finalPeg = new Peg(N);
 
-			//IterativeHanoiTower(N, originalPeg, finalPeg, additionalPeg);
+			ShowPegs(originalPeg, finalPeg, additionalPeg);
+
 			IterativeHanoiTower(N, originalPeg, finalPeg, additionalPeg);
 
-			finalPeg.Print();
+			Console.WriteLine("\nAfter:");
+			ShowPegs(originalPeg, finalPeg, additionalPeg);
 		}
 
 		static void IterativeHanoiTower(int number, Peg from, Peg to, Peg buf_peg)
@@ -140,6 +157,28 @@ namespace TowerOfHanoi
 		static void Relocate(Peg from, Peg to)
 		{
 			to.Add(from.Remove());
+		}
+
+		//Later
+
+		static void RunStack()
+		{
+			const int N = 8;
+
+			Stack<int> stack = new Stack<int>();
+		}
+
+		static void FillStack(Stack<int> stack, int n)
+		{
+			for(int i = n; i > 0; i++)
+			{
+				stack.Push(i);
+			}
+		}
+
+		static void StackHanoiTower()
+		{
+
 		}
 	}
 }
