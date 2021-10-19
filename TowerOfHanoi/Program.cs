@@ -25,7 +25,7 @@ namespace TowerOfHanoi
 
 		static void RunRecursive()
 		{
-			const int N = 8;
+			const int N = 8;	//кол-во колец
 
 			var originalPeg = new Peg(N, true);
 			var additionalPeg = new Peg(N);
@@ -53,7 +53,7 @@ namespace TowerOfHanoi
 
 		static void RunIterative()
 		{
-			const int N = 8;
+			const int N = 8;    //кол-во колец
 
 			var originalPeg = new Peg(N, true);
 			var additionalPeg = new Peg(N);
